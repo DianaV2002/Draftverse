@@ -1,0 +1,20 @@
+
+<div class="header">
+    <p>Which Draftverse<br>is right for me?</p>
+  </div>
+  
+  <div class="plans">
+    <div *ngFor="let plan of plans" class="{{ plan.type }}">
+      <h3>{{ plan.name }}</h3>
+      <p class="price">{{ plan.price }}</p>
+      <button class="choose" (click)="choosePlan(plan.type)">{{ plan.buttonText }}</button>
+      <p class="benefits">What's included?</p>
+      <div class="list">
+        <ul>
+          <li *ngFor="let benefit of plan.benefits">{{ benefit }}</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+  

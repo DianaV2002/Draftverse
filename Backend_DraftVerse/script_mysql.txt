@@ -1,0 +1,84 @@
+﻿My sql 
+CREATE TABLE Roles ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50) );
+CREATE TABLE Users ( id INT PRIMARY KEY AUTO_INCREMENT, full_name VARCHAR(50), email VARCHAR(100), username VARCHAR(50), password VARCHAR(50), role INT, user_plan VARCHAR(50), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (role) REFERENCES Roles(id) );
+CREATE TABLE Workspace ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), user_id INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES Users(id) );
+CREATE TABLE Note ( id INT PRIMARY KEY AUTO_INCREMENT, title VARCHAR(50), content VARCHAR(1000), workspace_id INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (workspace_id) REFERENCES Workspace(id) ); 
+CREATE TABLE Filter ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(20), workspace_id INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (workspace_id) REFERENCES Workspace(id) );
+CREATE TABLE Calendar ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), content VARCHAR(255), user_id INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (user_id) REFERENCES Users(id) ); 
+CREATE TABLE Task ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), content VARCHAR(1000), note_id INT, calendar_id INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, FOREIGN KEY (note_id) REFERENCES Note(id), FOREIGN KEY (calendar_id) REFERENCES Calendar(id) );
+CREATE TABLE Category ( id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(50), description VARCHAR(255), color VARCHAR(50) );
+CREATE TABLE Categorized_Notes ( id_category INT, id_note INT, FOREIGN KEY (id_category) REFERENCES Category(id), FOREIGN KEY (id_note) REFERENCES Note(id) );
+
+
+
+
+
+
+USE DraftVerse;
+
+
+
+
+INSERT INTO Roles (name) VALUES 
+('Autentificat'),
+('Premium'),
+('Neautentificat');
+
+
+INSERT INTO Users (full_name, email, username, password, role, user_plan) VALUES 
+('user1', 'user1@example.com', 'user1', 'parola', (SELECT id FROM Roles WHERE name = 'Premium'), 'premium');
+
+
+INSERT INTO Users (full_name, email, username, password, role, user_plan) VALUES 
+('user2', 'user2@example.com', 'user2', 'parola', (SELECT id FROM Roles WHERE name = 'Autentificat'), 'free');
+
+
+SET @user_id = (SELECT id FROM Users WHERE username = 'user1');
+INSERT INTO Workspace (name, user_id) VALUES 
+('My Premium Workspace', @user_id);
+
+
+SET @user_id2 = (SELECT id FROM Users WHERE username = 'user2');
+INSERT INTO Workspace (name, user_id) VALUES 
+('My Authenticated Workspace', @user_id2);
+
+
+SET @workspace_id = (SELECT id FROM Workspace WHERE user_id = @user_id);
+
+
+INSERT INTO Filter (name, workspace_id) VALUES 
+('Important', @workspace_id);
+
+
+INSERT INTO Calendar (name, content, user_id) VALUES 
+('Personal Calendar', 'My personal events', @user_id);
+
+
+INSERT INTO Category (name, description, color) VALUES 
+('Work', 'Notes related to work', 'Blue'),
+('Personal', 'Personal notes and tasks', 'Green');
+
+
+SET @calendar_id = (SELECT id FROM Calendar WHERE user_id = @user_id);
+INSERT INTO Note (title, content, workspace_id) VALUES 
+('Important Note', 'This is a note with important content.', @workspace_id);
+
+
+SET @note_id = (SELECT id FROM Note WHERE workspace_id = @workspace_id AND title = 'Important Note');
+INSERT INTO Task (name, content, note_id, calendar_id) VALUES 
+('Complete Task', 'Complete the task related to the note.', @note_id, @calendar_id);
+
+
+SET @category_id = (SELECT id FROM Category WHERE name = 'Work');
+INSERT INTO Categorized_Notes (id_category, id_note) VALUES 
+(@category_id, @note_id);
+
+-- alter tables
+
+alter table workspace modify name VARCHAR(50) not null;
+alter table note modify title varchar(50) not null;
+alter table note modify created_at TIMESTAMP not null;
+alter table note modify updated_at TIMESTAMP not null;
+
+
+

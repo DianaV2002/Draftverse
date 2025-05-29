@@ -1,0 +1,26 @@
+
+<div class="workspaces-title">
+  <h2>Manage Your Workspaces</h2>
+  
+  </div>
+
+  <div class="workspaces-container">
+    <div class="workspaces-header">
+      <p>Choose from your saved workspaces or create a new one to get started.</p>
+      <button class="add-workspace-button" (click)="createNewWorkspace()" title="Add New Workspace">
+        +
+      </button>
+    </div>
+    <ul class="workspace-list">
+      <li class="workspace-item" *ngFor="let workspace of workspaces; let i = index">
+        <span class="workspace-name">{{ workspace.name }}</span>
+        <div class="button-group">
+          <button class="details-button" (click)="viewWorkspaceDetails(workspace.name)">Details</button>
+          <button class="trash-button" (click)="DeleteWorkspace(workspace.name)">
+            <img src='assets/trash-icon.png' alt="Delete" class="trash-icon" />
+          </button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  

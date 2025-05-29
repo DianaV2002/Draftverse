@@ -1,0 +1,5 @@
+com\example\DraftVerse\DraftVerseApplication.class
+com\example\DraftVerse\controller\NoteController.class
+com\example\DraftVerse\persistence\Note.class
+com\example\DraftVerse\service\NoteService.class
+com\example\DraftVerse\repository\NoteRepository.class

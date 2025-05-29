@@ -1,0 +1,257 @@
+h1 {
+  font-family: "Space Mono", monospace;
+  font-size: 7rem;
+  color: white;
+  text-align: center;
+  margin-top: 150px;
+}
+
+h2 {
+  font-family: "Space Mono", monospace;
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  margin-top: 5px;
+}
+
+p {
+  font-family: "Space Mono", monospace;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 1.5em;
+  padding: 5px;
+  white-space: pre-line;
+}
+
+a {
+  font-family: "Space Mono", monospace;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin: 5px 10px;
+  background-color: #7E53FB;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  font-family: "Space Mono", monospace;
+  background-color: #6a39d3;
+}
+
+button {
+  font-family: "Space Mono", monospace;
+  position: absolute;
+}
+
+@keyframes highlightEffect {
+  0% {
+    text-shadow: 10px 10px 10px rgba(100, 0, 300, 1);
+    color: white;
+  }
+  50% {
+    text-shadow: 5px 5px 5px rgba(100, 0, 300, 1);
+    color: white;
+  }
+  100% {
+    text-shadow: 10px 10px 10px rgba(100, 0, 300, 1);
+    color: white;
+  }
+}
+
+.highlight {
+  animation: highlightEffect 4s infinite;
+}
+
+.container {
+  position: relative;
+}
+
+#logoDiv {
+  width: 180px;
+  margin: 0 auto;
+  top: 60px;
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftimg {
+  position: absolute;
+  left: 10%;
+  transform: translateY(-50%);
+  top: 130%;
+  height: auto;
+  max-width: 45%;
+  width: 30%;
+  object-fit: contain;
+}
+
+.rightimg {
+  position: absolute;
+  right: 10%;
+  transform: translateY(-50%);
+  top: 130%;
+  height: auto;
+  max-width: 45%;
+  order: 1;
+  width: 30%;
+  object-fit: contain;
+}
+
+
+.discover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #7E53FB;
+  border: 2px solid #7E53FB;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s;
+  margin-top: 400px;
+}
+
+.login:hover, .register:hover, .discover:hover {
+  background: #7E53FB;
+  color: black;
+  border: 2px solid #7E53FB;
+}
+
+#aboutSection {
+  /*border: 2px solid red;*/
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9));padding: 50px 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aboutSectionRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 200px;
+  position: relative;
+}
+
+.aboutSectionRow.reverse {
+  flex-direction: row-reverse;
+}
+
+.aboutPLeft {
+  width: 50%;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.aboutPRight {
+  width: 50%;
+  margin-right: 0;
+  margin-left: auto;
+  font-size: large;
+  justify-content: center;
+}
+
+#bundleSection {
+  /*border: 2px solid green;*/
+  background: linear-gradient(to bottom, rgba(128, 49, 233, 0.5), rgba(227, 210, 249, 1));padding: 50px 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.image-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-row img {
+  width: 30%;
+  height: auto;
+}
+
+.text-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-row p, h2, h3{
+  margin: 0;
+  padding: 10px;
+  flex: 1;
+  text-align: center;
+}
+
+#bundleHeader {
+  font-style: italic;
+  margin-top: 25px;
+  transform: translateX(-30%); color: white;
+  text-shadow:  0 0 10px #7400d9,
+                0 0 20px #8800ff,
+                0 0 30px #8800ff;
+}
+
+#contactSection {
+  text-align: center;
+  padding: 50px 20px; /* Add padding for spacing */
+}
+
+#contactSection h1 {
+  text-shadow:  0 0 10px #7400d9,
+                0 0 20px #8800ff,
+                0 0 30px #8800ff;
+  margin-bottom: 2rem;
+}
+
+#contactSection .contact-options {
+  display: flex;
+  justify-content: space-evenly; /* Even horizontal spacing */
+  align-items: center; /* Centers items vertically (if needed) */
+  gap: 2rem; /* Adds space between items */
+}
+
+#contactSection .contact-item {
+  text-align: center;
+  max-width: 400px; /* Ensures items don’t stretch too wide */
+}
+
+#contactSection .contact-btn {
+  display: inline-block;
+  background-color: #7400d9; /* Same as the original button color */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.contact-btn:hover {
+  background-color: #4d0091; /* Slightly darker hover color */
+}
+
+#contactSection p {
+  margin: 0;
+  font-size: 1.1rem;
+}
